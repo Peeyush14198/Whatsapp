@@ -1,0 +1,61 @@
+page-login {
+
+   .userEmail{
+       position: relative;
+       width: 250px;
+       left:0px;
+       right: 0px;
+       margin: 0px auto;
+       top: 150px;
+       border-radius:1.2em;
+   }
+   .userPassword{
+    position: relative;
+    width: 250px;
+    left:0px;
+    right: 0px;
+    margin: 0px auto;
+    top: 170px;
+    border-radius:1.2em;
+   }
+
+   .login{
+       position: relative;
+       left:0px;
+       right: 0px;
+       margin: 0px auto;
+       width: 250px;
+       top: 200px;
+       border-radius:1.2em;
+       text-align: center;
+       box-shadow: 0px 0px 1px 2px #999;
+       -webkit-text-fill-color: antiquewhite;
+   }
+   .signUp{
+    position: relative;
+    left:0px;
+    right: 0px;
+    margin: 0px auto;
+    width: 250px;
+    top: 220px;
+    border-radius:1.2em;
+    text-align: center;
+    box-shadow: 0px 0px 1px 2px #999;
+    -webkit-text-fill-color: antiquewhite;
+   }
+
+   .h1{
+       -webkit-text-fill-color: antiquewhite;
+       text-align: center;
+       position: relative;
+       top: 120px;
+       font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+       font-size: 55px;
+   }
+
+
+   .content{
+       background-color: map-get($colors, dark );
+   }
+      
+  }

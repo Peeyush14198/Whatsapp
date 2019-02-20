@@ -1,0 +1,103 @@
+.loader {
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    html {
+        border: 6px solid #444;
+    }
+    html,
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #2F2F31;
+        min-height: calc(100vh - 12px);
+    }
+    .container,
+    .dot-container {
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+    .container {
+        transform-origin: center;
+        animation: anirotate 10s linear infinite;
+    }
+    .dot-container {
+        position: absolute;
+        border: 0px solid #fff;
+        border-radius: 50px;
+    }
+    .dot-container:nth-child(2) {
+        transform: rotate(40deg);
+    }
+    .dot-container:nth-child(2) .dot {
+        animation-delay: -0.5s;
+    }
+    .dot-container:nth-child(3) {
+        transform: rotate(80deg);
+    }
+    .dot-container:nth-child(3) .dot {
+        animation-delay: -1s;
+    }
+    .dot {
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        background: map-get($colors, secondary);
+        border-radius: 5px;
+        transform: translate(0, 0);
+    }
+    .dot:nth-child(1) {
+        top: 0;
+        left: calc(50% - 5px);
+        animation: ani1 2s infinite;
+    }
+    .dot:nth-child(2) {
+        bottom: calc(28% - 5px);
+        left: calc(11% - 5px);
+        animation: ani2 2s infinite;
+    }
+    .dot:nth-child(3) {
+        bottom: calc(28% - 5px);
+        right: calc(11% - 5px);
+        animation: ani3 2s infinite;
+    }
+    [hidden] {
+        display: none;
+    }
+    @keyframes anirotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-359deg);
+        }
+    }
+    @keyframes ani1 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-40px, 67px);
+        }
+    }
+    @keyframes ani2 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(77px, 0);
+        }
+    }
+    @keyframes ani3 {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-39px, -67px);
+        }
+    }
+}

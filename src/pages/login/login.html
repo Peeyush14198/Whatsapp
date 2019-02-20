@@ -1,0 +1,16 @@
+<ion-content>
+    <h1 class="h1">
+      Login
+    </h1>
+  <ion-item no-lines class="userEmail">
+    <ion-input type = "email" placeholder = "Email" [(ngModel)] = "userEmail">
+    </ion-input>
+  </ion-item>
+  <ion-item no-lines class="userPassword">
+    <ion-input type = "password" placeholder = "Password" [(ngModel)] = "userPassword">
+    </ion-input>
+  </ion-item>
+  <button ion-button class="login" (click) = "login(userEmail,userPassword)"  block round outline>Sign In</button>
+  <button ion-button class="signUp" (click) = "signUp()"  block round outline>Sign Up</button>
+</ion-content>
+

@@ -1,0 +1,58 @@
+<ion-content>
+    <div class="wrapper fadeInDown">
+  
+      <div id="formContent">
+        <div class="fadeIn first">
+          <h1 class="heading">Basic Info</h1>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTredmPn2p88NjWegh0VjD84eACwQmkIr6nNbPogQ7f9uNQS5x" id="icon" alt="authForm Icon" />
+        </div>
+        <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+        <ion-item>
+          <ion-label floating>Username</ion-label>
+          <ion-input formControlName="username" type="email"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.username.hasError('minlength') && authForm.controls.username.touched">
+          <p>Sorry, minimum username length is 8!</p>
+        </ion-item>
+          <ion-item [ngClass]="{'error-border':!authForm.controls.email.valid && authForm.controls.email.touched}">
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="email" type="email"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="authForm.controls.email.hasError('required') && authForm.controls.email.touched">
+            <p>Sorry, field email is required!</p>
+          </ion-item>
+          <ion-item *ngIf="authForm.controls.email.hasError('pattern') && authForm.controls.email.touched">
+            <p>Invalid Email</p>
+          </ion-item>
+          <ion-item *ngIf="authForm.controls.email.hasError('minlength') && authForm.controls.email.touched">
+            <p>Sorry, minimum email length is 8!</p>
+          </ion-item>
+        
+          <ion-item [ngClass]="{'error-border':!authForm.controls.password.valid && authForm.controls.password.touched}">
+            <ion-label floating>Password</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="authForm.controls.password.hasError('required') && authForm.controls.password.touched">
+            <p>Sorry, field password is required!</p>
+          </ion-item>
+          <ion-item *ngIf="authForm.controls.password.hasError('minlength') && authForm.controls.password.touched">
+            <p>Sorry, minimum password length is 8!</p>
+          </ion-item>
+          <ion-item [ngClass]="{'error-border':!authForm.controls.renterPassword.valid && authForm.controls.renterPassword.touched}">
+            <ion-label floating>Retype Password</ion-label>
+            <ion-input formControlName="renterPassword" type="password"></ion-input>
+          </ion-item>
+          <ion-item class="error" *ngIf="authForm.get('renterPassword').hasError('required') &&authForm.get('renterPassword').touched">
+            <p>Confirm Password is Required</p>
+          </ion-item>
+          <ion-item class="error" *ngIf="authForm.get('renterPassword').hasError('equalTo') &&authForm.get('renterPassword').touched">
+            <p>Password Mismatch</p>
+          </ion-item>
+          <button ion-button [disabled]="!authForm.valid" class="register" type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+  
+  
+  </ion-content>
+  
