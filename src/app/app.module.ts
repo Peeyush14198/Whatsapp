@@ -12,7 +12,13 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoaderProvider } from '../providers/loader/loader';
 import { SignUpPage } from '../pages/sign-up/sign-up';
-
+import { SuperTabsModule } from 'ionic2-super-tabs';
+import { UserServiceProvider } from '../providers/user-service/user-service';
+import { Camera} from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
+import { BuddyPage } from '../pages/buddy/buddy';
+import { ChatsPage } from '../pages/chats/chats';
+import { ProfilePage } from '../pages/profile/profile';
 export const firebaseConfig = {
   apiKey: "AIzaSyD2d3qSUsZoLAZNvu0H7Q-q89avOrbc6FA",
   authDomain: "whatsapp-e72e8.firebaseapp.com",
@@ -28,19 +34,23 @@ export const firebaseConfig = {
     MyApp,
     LoginPage,
     TabsPage,
-    SignUpPage
+    SignUpPage,
+    BuddyPage,
+    
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
     TabsPage,
-    SignUpPage
+    SignUpPage,
+    BuddyPage
     
   ],
   providers: [
@@ -53,8 +63,9 @@ export const firebaseConfig = {
     AngularFireAuth,
     LoaderProvider,
     AngularFireModule,
-   
-   
+    UserServiceProvider,
+    Camera,
+    ImagePicker
   ]
 })
 export class AppModule {}

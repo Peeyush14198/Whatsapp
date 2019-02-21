@@ -1,0 +1,11 @@
+<ion-content>
+  <div class="profile-image" (click)="editUserImage()">
+    <img src="{{avatar}}">
+  </div>
+  <div>
+    <h2 (click)="editUserName()" class="h2">{{displayName}}</h2>
+  </div>
+  <div class="spacer" style="height: 10px;"></div>
+  
+  <button ion-button round  color="whatsapp" (click)="logout()" class="logout">Logout</button>
+</ion-content>
