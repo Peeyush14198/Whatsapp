@@ -19,6 +19,7 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { BuddyPage } from '../pages/buddy/buddy';
 import { ChatsPage } from '../pages/chats/chats';
 import { ProfilePage } from '../pages/profile/profile';
+import { ChatingPage } from '../pages/chating/chating';
 export const firebaseConfig = {
   apiKey: "AIzaSyD2d3qSUsZoLAZNvu0H7Q-q89avOrbc6FA",
   authDomain: "whatsapp-e72e8.firebaseapp.com",
@@ -36,6 +37,7 @@ export const firebaseConfig = {
     TabsPage,
     SignUpPage,
     BuddyPage,
+    ChatingPage
     
   ],
   imports: [
@@ -50,7 +52,8 @@ export const firebaseConfig = {
     LoginPage,
     TabsPage,
     SignUpPage,
-    BuddyPage
+    BuddyPage,
+    ChatingPage
     
   ],
   providers: [
