@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { CreateGroupPage } from '../create-group/create-group';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
+import { GroupChatPage } from '../group-chat/group-chat';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,7 @@ import { UserServiceProvider } from '../../providers/user-service/user-service';
 export class GroupsPage {
   allmygroups
   constructor(public navCtrl: NavController, public navParams: NavParams,public userService:UserServiceProvider,
-    public events:Events  ) {
+    public events:Events, ) {
   }
 
   ionViewDidLoad() {
@@ -36,7 +37,8 @@ export class GroupsPage {
 
   openChat(group)
   {
-       alert("Created") 
+    this.userService.getintogroup(group.groupName);
+    this.navCtrl.push(GroupChatPage, { groupName: group.groupName });
   }
 
   

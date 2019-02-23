@@ -1,0 +1,20 @@
+<ion-header>
+ 
+  <ion-navbar color="whatsapp">
+    <ion-title>{{groupName}}</ion-title>
+    <ion-buttons end>
+      <button *ngIf="owner" ion-button icon-only (click)="presentOwnerSheet()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <button *ngIf="!owner" ion-button icon-only (click)="presentMemberSheet()">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+ 
+</ion-header>
+ 
+ 
+<ion-content padding>
+ 
+</ion-content>

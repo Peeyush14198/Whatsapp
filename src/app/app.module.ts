@@ -21,6 +21,9 @@ import { ChatsPage } from '../pages/chats/chats';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChatingPage } from '../pages/chating/chating';
 import { CreateGroupPage } from '../pages/create-group/create-group';
+import { GroupChatPage } from '../pages/group-chat/group-chat';
+import { GroupPeoplePage } from '../pages/group-people/group-people';
+import { GroupMembersPage } from '../pages/group-members/group-members';
 export const firebaseConfig = {
   apiKey: "AIzaSyD2d3qSUsZoLAZNvu0H7Q-q89avOrbc6FA",
   authDomain: "whatsapp-e72e8.firebaseapp.com",
@@ -39,7 +42,10 @@ export const firebaseConfig = {
     SignUpPage,
     BuddyPage,
     ChatingPage,
-    CreateGroupPage
+    CreateGroupPage,
+    GroupChatPage,
+    GroupPeoplePage,
+    GroupMembersPage
     
   ],
   imports: [
@@ -56,7 +62,10 @@ export const firebaseConfig = {
     SignUpPage,
     BuddyPage,
     ChatingPage,
-    CreateGroupPage
+    CreateGroupPage,
+    GroupChatPage,
+    GroupPeoplePage,
+    GroupMembersPage
     
   ],
   providers: [

@@ -10,6 +10,8 @@ An app made with ionic similar to whats App and facebook.
     <li><input type="checkbox" disabled checked>Form Validation</li>
     <li><input type = "checkbox" disabled checked>List of users on the app</li>
     <li><input type = "checkbox" disabled checked>One to one chatting</li>
+    <li><input type = "checkbox" disabled checked>Groups</li>
+
 </ul>
 
 # Coming Soon
