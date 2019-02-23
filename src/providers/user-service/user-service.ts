@@ -20,6 +20,8 @@ export class UserServiceProvider {
   firebuddychats = firebase.database().ref('/buddychats');
   buddy: any;
   buddymessages = [];
+  fireGroup = firebase.database().ref('/groups');
+  myGroups: Array<any> = [];
   constructor(public afireauth:AngularFireAuth,private Camera:Camera,private events :Events) {
     console.log('Hello UserServiceProvider Provider');
     this.myPhotosRef = firebase.storage().ref('/Photos/');
@@ -195,6 +197,37 @@ getbuddymessages() {
     }
     this.events.publish('newmessage');
   })
+}
+
+addGroup(newGroup) {
+  var promise = new Promise((resolve, reject) => {
+    this.fireGroup.child(firebase.auth().currentUser.uid).child(newGroup.groupName).set({
+      msgboard: '',
+      owner: firebase.auth().currentUser.uid
+    }).then(() => {
+      resolve(true);
+      }).catch((err) => {
+        reject(err);
+    })
+  });
+  return promise;
+}
+
+getmygroups() {
+  this.fireGroup.child(firebase.auth().currentUser.uid).once('value', (snapshot) => {
+    this.myGroups = [];
+    if(snapshot.val() != null) {
+      var temp = snapshot.val();
+      for (var key in temp) {
+        var newgroup = {
+          groupName: key,
+        }
+        this.myGroups.push(newgroup);
+      }
+    }
+    this.events.publish('allmygroups');
+  })
+  
 }
 
 }

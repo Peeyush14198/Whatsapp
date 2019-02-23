@@ -1,0 +1,21 @@
+<ion-header>
+ 
+  <ion-navbar color="whatsapp">
+    <ion-title>Add a New Group</ion-title>
+  </ion-navbar>
+ 
+</ion-header>
+ 
+<ion-content>
+
+<div>
+  <h2 (click)="editGroupName()">{{newGroup.groupName}}</h2>
+</div>
+<div>
+  Tap on the pic or group name to change it.
+</div>
+<div class="spacer" style="height: 10px;"></div>
+<div>
+  <button ion-button round outline (click)="createGroup()">Create</button>
+</div>
+</ion-content>
