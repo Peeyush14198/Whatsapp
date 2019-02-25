@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ActionSheetController } from 'ioni
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { GroupPeoplePage } from '../group-people/group-people';
 import { GroupMembersPage } from '../group-members/group-members';
+import { GroupInfoPage } from '../group-info/group-info';
 
 @IonicPage()
 @Component({
@@ -42,21 +43,25 @@ export class GroupChatPage {
           text: 'Remove member',
           icon: 'remove-circle',
           handler: () => {
-            this.navCtrl.push(GroupMembersPage);
+            this.navCtrl.push(GroupMembersPage,{groupName:this.groupName});
           }
         },
         {
           text: 'Group Info',
           icon: 'person',
           handler: () => {
-            this.navCtrl.push('GroupinfoPage', {groupName: this.groupName});
+            this.navCtrl.push(GroupInfoPage, {groupName: this.groupName});
           }
         },
         {
           text: 'Delete Group',
           icon: 'trash',
           handler: () => {
-            //this.userService.deletegroup();
+          this.userService.deletegroup().then(()=>{
+            this.navCtrl.pop()
+          }).catch((err)=>{
+              console.log(err)
+          })
           }
         },
         {
@@ -87,7 +92,7 @@ export class GroupChatPage {
           text: 'Group Info',
           icon: 'person',
           handler: () => {
-            this.navCtrl.push('GroupinfoPage', {groupName: this.groupName});
+            this.navCtrl.push(GroupInfoPage, {groupName: this.groupName});
           }
         },
         {

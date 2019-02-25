@@ -12,9 +12,12 @@ import { UserServiceProvider } from '../../providers/user-service/user-service';
 export class GroupMembersPage {
   groupmembers;
   tempgrpmembers;
+  groupname;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService:UserServiceProvider,
               public events: Events) {
-  }
+     this.groupname = this.navParams.get('groupName')
+     console.log(this.groupname)
+  } 
  
   ionViewWillEnter() {
     this.groupmembers = this.userService.currentgroup;
@@ -22,11 +25,8 @@ export class GroupMembersPage {
     this.tempgrpmembers = this.groupmembers;
     this.events.subscribe('gotintogroup', () => {
       this.groupmembers = this.userService.currentgroup;
-      console.log("yes - >",this.groupmembers)
       this.tempgrpmembers = this.groupmembers;
-
     })
-    
   }
  
   ionViewWillLeave() {

@@ -24,6 +24,7 @@ import { CreateGroupPage } from '../pages/create-group/create-group';
 import { GroupChatPage } from '../pages/group-chat/group-chat';
 import { GroupPeoplePage } from '../pages/group-people/group-people';
 import { GroupMembersPage } from '../pages/group-members/group-members';
+import { GroupInfoPage } from '../pages/group-info/group-info';
 export const firebaseConfig = {
   apiKey: "AIzaSyD2d3qSUsZoLAZNvu0H7Q-q89avOrbc6FA",
   authDomain: "whatsapp-e72e8.firebaseapp.com",
@@ -45,7 +46,8 @@ export const firebaseConfig = {
     CreateGroupPage,
     GroupChatPage,
     GroupPeoplePage,
-    GroupMembersPage
+    GroupMembersPage,
+    GroupInfoPage
     
   ],
   imports: [
@@ -65,7 +67,8 @@ export const firebaseConfig = {
     CreateGroupPage,
     GroupChatPage,
     GroupPeoplePage,
-    GroupMembersPage
+    GroupMembersPage,
+    GroupInfoPage
     
   ],
   providers: [
@@ -80,7 +83,8 @@ export const firebaseConfig = {
     AngularFireModule,
     UserServiceProvider,
     Camera,
-    ImagePicker
+    ImagePicker,
+    
   ]
 })
 export class AppModule {}

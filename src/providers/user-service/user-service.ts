@@ -292,4 +292,37 @@ getintogroup(groupname) {
       })
   }
 
+getgroupmembers() {
+    this.fireGroup.child(firebase.auth().currentUser.uid).child(this.currentgroupname).once('value', (snapshot) => {
+      var tempdata = snapshot.val().owner;
+      this.fireGroup.child(tempdata).child(this.currentgroupname).child('members').once('value', (snapshot) => {
+        var tempvar = snapshot.val();
+        for (var key in tempvar) {
+          this.currentgroup.push(tempvar[key]);
+        }
+      })
+    })
+    this.events.publish('gotmembers');
+  }
+
+  deletegroup ()
+  {
+    return new Promise((resolve, reject) => {
+      this.fireGroup.child(firebase.auth().currentUser.uid).child(this.currentgroupname).child('members').once('value', (snapshot) => {
+        var tempmembers = snapshot.val();
+  
+        for (var key in tempmembers) {
+          this.fireGroup.child(tempmembers[key].uid).child(this.currentgroupname).remove();
+        }
+ 
+        this.fireGroup.child(firebase.auth().currentUser.uid).child(this.currentgroupname).remove().then(() => {
+          resolve(true);
+        }).catch((err) => {
+          reject(err);
+        })
+        
+      })
+    })
+  }
+
 }
