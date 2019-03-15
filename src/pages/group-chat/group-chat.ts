@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, ActionSheetController, Content, Events } from 'ionic-angular';
 import { UserServiceProvider } from '../../providers/user-service/user-service';
 import { GroupPeoplePage } from '../group-people/group-people';
 import { GroupMembersPage } from '../group-members/group-members';
 import { GroupInfoPage } from '../group-info/group-info';
+import firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -13,14 +14,51 @@ import { GroupInfoPage } from '../group-info/group-info';
 export class GroupChatPage {
   owner: boolean = false;
   groupName;
+  @ViewChild('content') content: Content;
+  
+  newmessage;
+  allgroupmsgs;
+  alignuid;
+  photoURL;
+  imgornot;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserServiceProvider,
-              public actionSheet: ActionSheetController) {
+              public actionSheet: ActionSheetController,public events:Events ) {
+    this.groupName = this.navParams.get('groupName');
+    this.alignuid = firebase.auth().currentUser.uid;
+    this.photoURL = firebase.auth().currentUser.photoURL;
     this.groupName = this.navParams.get('groupName');
     this.userService.getOwnerShip(this.groupName).then((res) => {
       if (res)
         this.owner = true;  
     }).catch((err) => {
       alert(err);
+      })
+    this.userService.getgroupmsgs(this.groupName);
+    this.events.subscribe('newgroupmsg', () => {
+      this.allgroupmsgs = [];
+      this.imgornot = [];
+      this.allgroupmsgs = this.userService.groupmsgs;
+      for (var key in this.allgroupmsgs) {
+        var d = new Date(this.allgroupmsgs[key].timestamp);
+        var hours = d.getHours();
+        var minutes = "0" + d.getMinutes();
+        var month = d.getMonth();
+        var da = d.getDate();
+ 
+        var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        
+        var formattedTime = monthNames[month] + "-" + da + "-" + hours + ":" + minutes.substr(-2);
+ 
+        this.allgroupmsgs[key].timestamp = formattedTime;
+        if (this.allgroupmsgs[key].message.substring(0, 4) === 'http') {
+          this.imgornot.push(true);
+        }
+        else {
+          this.imgornot.push(false);
+        }
+      }
+      this.scrollto();
     })
   }
  
@@ -85,7 +123,11 @@ export class GroupChatPage {
           text: 'Leave Group',
           icon: 'log-out',
           handler: () => {
-            //this.userService.leavegroup();
+            this.userService.leavegroup().then(()=>{
+              this.navCtrl.pop();
+            }).catch((err)=>{
+              console.log(err)
+            });
           }
         },
         {
@@ -106,6 +148,19 @@ export class GroupChatPage {
       ]
     })
     sheet.present();
+  }
+
+addgroupmsg() {
+    this.userService.addgroupmsg(this.newmessage).then(() => {
+      this.scrollto();
+      this.newmessage = '';
+    })
+  }
+ 
+  scrollto() {
+    setTimeout(() => {
+      this.content.scrollToBottom();
+    }, 1000);
   }
  
 }
